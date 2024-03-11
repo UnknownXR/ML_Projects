@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>HF ML</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: 'Arimo', sans-serif;
+    }
+
+    .login {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #333;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .prediction-note {
+      color: #333;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .legend {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login">
+    <h1>Heart Failure Prediction</h1>
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+      <input type="text" name="age" placeholder="Age" required="required" />
+      <input type="text" name="ejection_fraction" placeholder="Ejection_Fraction" required="required" />
+      <input type="text" name="serum_creatinine" placeholder="Serum_Creatinine" required="required" />
+      <input type="text" name="serum_sodium" placeholder="Serum_Sodium" required="required" />
+
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+    <div class="prediction-note">
+      {{ prediction_text }}
+    </div>
+
+    <div class="legend">
+      <p>0: Survived</p>
+      <p>1: Not Survived</p>
+    </div>
+  </div>
+</body>
+
+</html>
